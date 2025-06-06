@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { getAvailableSlots, getAllSlots } from '../data/mockData';
+import { RealTimeLogger } from '../server';
 
 const router = Router();
 
@@ -7,15 +8,25 @@ const router = Router();
 router.get('/:clinicianId/:date', (req, res) => {
   const { clinicianId, date } = req.params;
   const { includeUnavailable } = req.query;
+  const logger = RealTimeLogger.getInstance();
   
-  console.log(`📅 API: Fetching availability for clinician ${clinicianId} on ${date}`);
+  logger.log('info', 'AVAILABILITY', `Checking schedule for clinician ${clinicianId} on ${date}`, {
+    clinicianId,
+    date,
+    includeUnavailable: includeUnavailable === 'true'
+  });
   
   try {
     const slots = includeUnavailable === 'true' 
       ? getAllSlots(clinicianId, date)
       : getAvailableSlots(clinicianId, date);
     
-    console.log(`📅 Found ${slots.length} ${includeUnavailable === 'true' ? 'total' : 'available'} slots`);
+    logger.log('success', 'AVAILABILITY', `Found ${slots.length} ${includeUnavailable === 'true' ? 'total' : 'available'} slots`, {
+      clinicianId,
+      date,
+      slotsFound: slots.length,
+      availableSlots: slots.filter(s => s.available).map(s => s.startTime + '-' + s.endTime)
+    });
     
     res.json({
       clinicianId,
@@ -23,7 +34,7 @@ router.get('/:clinicianId/:date', (req, res) => {
       slots
     });
   } catch (error) {
-    console.error('📅 Error fetching availability:', error);
+    logger.log('error', 'AVAILABILITY', `Failed to fetch availability for ${clinicianId}`, { error: error instanceof Error ? error.message : error });
     res.status(500).json({ error: 'Failed to fetch availability' });
   }
 });

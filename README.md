@@ -16,6 +16,7 @@
 - **Smart appointment booking** - AI agent with access to actual schedules and availability
 - **Patient management** - Create and manage patient records through conversation
 - **Location & clinician lookup** - Real-time access to medical providers and locations
+- **Real-time logging** - Watch AI agent interactions with EHR system in real-time
 
 ### 🛠️ **OpenAI Function Calling**
 The AI agent is equipped with 5 powerful tools:
@@ -68,11 +69,14 @@ The AI agent is equipped with 5 powerful tools:
 1. Visit `http://localhost:3001`
 2. Select "Text to Text" experience
 3. Click "Start Text Chat"
-4. Ask the AI about:
+4. **Watch the magic happen**: Real-time logs on the left show exactly what the AI is doing!
+5. Ask the AI about:
    - "What locations do you have?"
    - "Show me doctors in Brooklyn"
    - "I need to schedule an appointment"
    - "Check availability for Dr. Sarah Johnson next Tuesday"
+
+**Pro tip**: Toggle the log panel with the 📊 button to focus on the chat or see both sides!
 
 ### CLI Interface
 ```bash
@@ -114,6 +118,41 @@ src/
         ├── chat.html           # Chat interface
         └── *.css, *.js         # Styling & interactions
 ```
+
+## 📊 **Real-Time System Logs**
+
+The web interface features a live log panel that shows exactly what's happening behind the scenes:
+
+### **What You'll See:**
+- **🌐 HTTP Requests**: Every GET, POST request with headers, body, and response details
+- **🔍 EHR API Calls**: Watch the AI fetch locations, doctors, and availability in real-time
+- **🤖 OpenAI Function Calls**: See which tools the AI decides to use and when
+- **💾 Data Operations**: Live view of patient records and appointments being created
+- **📡 WebSocket Events**: Connection status and real-time communication
+- **⚡ Performance Metrics**: Response times, data sizes, and operation success/failure
+- **🏥 Database Operations**: See clinicians filtered by location, availability checks
+- **🔧 Server Lifecycle**: Startup, initialization, and configuration events
+
+### **Log Categories:**
+- `HTTP` - All incoming requests and outgoing responses
+- `CHAT` - User messages and conversation flow
+- `AI_AGENT` - OpenAI processing and responses  
+- `EHR_API` - Database operations and API calls
+- `CLINICIANS` - Doctor lookup and filtering operations
+- `LOCATIONS` - Medical facility operations
+- `AVAILABILITY` - Schedule and time slot operations
+- `WEBSOCKET` - Real-time connection events
+- `SESSION` - User session management
+- `SERVER` - System startup and configuration
+- `DATABASE` - Data initialization and mock setup
+
+### **Controls:**
+- **📊 Toggle Button**: Hide/show log panel (header button)
+- **Clear Button**: Reset logs while keeping system running
+- **Auto-scroll**: Always shows latest activity
+- **Color Coding**: Green=Success, Blue=Info, Orange=Warning, Red=Error
+
+Perfect for demos, debugging, and understanding how AI agents really work!
 
 ## 🔧 API Endpoints
 

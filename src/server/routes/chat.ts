@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { AppointmentBookingAgentWithTools } from '../../agents/text-to-text/appointment-agent-with-tools';
+import { RealTimeLogger } from '../server';
 
 const router = Router();
 
@@ -8,27 +9,35 @@ const agentSessions = new Map<string, AppointmentBookingAgentWithTools>();
 
 // POST /api/chat - Send message to agent
 router.post('/', async (req, res) => {
+  const logger = RealTimeLogger.getInstance();
+  
   try {
     const { message, sessionId = 'default' } = req.body;
     
     if (!message) {
+      logger.log('error', 'CHAT', 'Message is required');
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    console.log(`💬 Chat API: Received message from session ${sessionId}: "${message}"`);
+    logger.log('info', 'CHAT', `Received message from session ${sessionId}`, { message });
 
     // Get or create agent for this session
     let agent = agentSessions.get(sessionId);
     if (!agent) {
       agent = new AppointmentBookingAgentWithTools();
       agentSessions.set(sessionId, agent);
-      console.log(`💬 Created new agent session: ${sessionId}`);
+      logger.log('success', 'SESSION', `Created new agent session: ${sessionId}`);
     }
+
+    logger.log('info', 'AI_AGENT', 'Processing message with OpenAI...');
 
     // Send message to agent
     const response = await agent.sendMessage(message);
     
-    console.log(`💬 Agent response: "${response.substring(0, 100)}${response.length > 100 ? '...' : ''}"`);
+    logger.log('success', 'AI_AGENT', 'Received response from OpenAI', { 
+      responseLength: response.length,
+      preview: response.substring(0, 100) + (response.length > 100 ? '...' : '')
+    });
 
     res.json({ 
       response,
@@ -36,7 +45,9 @@ router.post('/', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('💬 Chat API error:', error);
+    logger.log('error', 'CHAT', 'Failed to process message', { 
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
     res.status(500).json({ 
       error: 'Failed to process message',
       details: error instanceof Error ? error.message : 'Unknown error'
