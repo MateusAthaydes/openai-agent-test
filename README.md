@@ -1,24 +1,24 @@
-# 🤖 AI Agent Experience - Medical Appointment Booking
+# AI Agent Platform - Medical Appointment Booking
 
 > A proof-of-concept demonstrating AI agent integration with Electronic Health Records (EHR) for seamless appointment booking across multiple interaction modalities.
 
-![AI Agent Experience](https://img.shields.io/badge/AI-Powered-blue) ![OpenAI](https://img.shields.io/badge/OpenAI-Function%20Calling-green) ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue) ![Express](https://img.shields.io/badge/Express-Server-red)
+![AI Agent Platform](https://img.shields.io/badge/AI-Powered-FF5A24) ![OpenAI](https://img.shields.io/badge/OpenAI-Function%20Calling-green) ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue) ![Express](https://img.shields.io/badge/Express-Server-red)
 
-## 🌟 Features
+## Features
 
-### 🎯 **Multi-Modal AI Interactions**
-- **Text-to-Text** ✅ - Real-time chat with AI appointment assistant
-- **Text-to-Speech** 🚧 - Type messages, hear AI responses (Coming Soon)
-- **Speech-to-Speech** 🚧 - Natural voice conversations (Coming Soon)
+### **Multi-Modal AI Interactions**
+- **Text-to-Text** - Real-time chat with AI appointment assistant
+- **Text-to-Speech** - Type messages, hear AI responses (Coming Soon)
+- **Speech-to-Speech** - Natural voice conversations (Coming Soon)
 
-### 🏥 **EHR Integration**
+### **EHR Integration**
 - **Real-time data access** - Live integration with mock Electronic Health Records
 - **Smart appointment booking** - AI agent with access to actual schedules and availability
 - **Patient management** - Create and manage patient records through conversation
 - **Location & clinician lookup** - Real-time access to medical providers and locations
 - **Real-time logging** - Watch AI agent interactions with EHR system in real-time
 
-### 🛠️ **OpenAI Function Calling**
+### **OpenAI Function Calling**
 The AI agent is equipped with 5 powerful tools:
 - `get_locations` - Fetch all medical office locations
 - `get_clinicians` - Get doctors by location and specialty
@@ -26,7 +26,7 @@ The AI agent is equipped with 5 powerful tools:
 - `create_patient` - Save patient information to EHR
 - `create_appointment` - Book confirmed appointments
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+ 
@@ -63,7 +63,7 @@ The AI agent is equipped with 5 powerful tools:
    http://localhost:3001
    ```
 
-## 🎮 Usage
+## Usage
 
 ### Web Interface
 1. Visit `http://localhost:3001`
@@ -76,7 +76,7 @@ The AI agent is equipped with 5 powerful tools:
    - "I need to schedule an appointment"
    - "Check availability for Dr. Sarah Johnson next Tuesday"
 
-**Pro tip**: Toggle the log panel with the 📊 button to focus on the chat or see both sides!
+**Pro tip**: Toggle the log panel with the logs button to focus on the chat or see both sides!
 
 ### CLI Interface
 ```bash
@@ -85,7 +85,7 @@ npm run text-to-text
 > I need to book an appointment with a cardiologist
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -119,19 +119,19 @@ src/
         └── *.css, *.js         # Styling & interactions
 ```
 
-## 📊 **Real-Time System Logs**
+## **Real-Time System Logs**
 
 The web interface features a live log panel that shows exactly what's happening behind the scenes:
 
 ### **What You'll See:**
-- **🌐 HTTP Requests**: Every GET, POST request with headers, body, and response details
-- **🔍 EHR API Calls**: Watch the AI fetch locations, doctors, and availability in real-time
-- **🤖 OpenAI Function Calls**: See which tools the AI decides to use and when
-- **💾 Data Operations**: Live view of patient records and appointments being created
-- **📡 WebSocket Events**: Connection status and real-time communication
-- **⚡ Performance Metrics**: Response times, data sizes, and operation success/failure
-- **🏥 Database Operations**: See clinicians filtered by location, availability checks
-- **🔧 Server Lifecycle**: Startup, initialization, and configuration events
+- **HTTP Requests**: Every GET, POST request with headers, body, and response details
+- **EHR API Calls**: Watch the AI fetch locations, doctors, and availability in real-time
+- **OpenAI Function Calls**: See which tools the AI decides to use and when
+- **Data Operations**: Live view of patient records and appointments being created
+- **WebSocket Events**: Connection status and real-time communication
+- **Performance Metrics**: Response times, data sizes, and operation success/failure
+- **Database Operations**: See clinicians filtered by location, availability checks
+- **Server Lifecycle**: Startup, initialization, and configuration events
 
 ### **Log Categories:**
 - `HTTP` - All incoming requests and outgoing responses
@@ -147,14 +147,14 @@ The web interface features a live log panel that shows exactly what's happening 
 - `DATABASE` - Data initialization and mock setup
 
 ### **Controls:**
-- **📊 Toggle Button**: Hide/show log panel (header button)
+- **Toggle Button**: Hide/show log panel (header button)
 - **Clear Button**: Reset logs while keeping system running
 - **Auto-scroll**: Always shows latest activity
 - **Color Coding**: Green=Success, Blue=Info, Orange=Warning, Red=Error
 
 Perfect for demos, debugging, and understanding how AI agents really work!
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### EHR Mock Server
 - `GET /api/locations` - Get all medical locations
@@ -172,7 +172,7 @@ Perfect for demos, debugging, and understanding how AI agents really work!
 - `GET /health` - Server health check
 - `GET /` - Web interface
 
-## 🧪 Example Conversations
+## Example Conversations
 
 ### Booking an Appointment
 ```
@@ -216,7 +216,7 @@ AI: Let me check Dr. Sarah Johnson's availability for Monday...
     Which time works best for you?
 ```
 
-## 🛠️ Development
+## Development
 
 ### Available Scripts
 ```bash
@@ -238,7 +238,7 @@ npm run dev             # Development mode
 - **Console logging** for all EHR operations
 - **In-memory storage** for demo purposes
 
-## 🔮 Future Roadmap
+## Future Roadmap
 
 ### Phase 2: Text-to-Speech
 - Integrate OpenAI TTS API
@@ -256,7 +256,7 @@ npm run dev             # Development mode
 - Advanced scheduling logic
 - Multi-language support
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -264,11 +264,11 @@ npm run dev             # Development mode
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **OpenAI** for GPT models and function calling capabilities
 - **Express.js** for robust server framework
@@ -277,6 +277,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ for the future of AI-powered healthcare interactions**
+**Built for the future of AI-powered healthcare interactions**
 
-🚀 **Try it live**: `npm run server` → `http://localhost:3001`
+**Try it live**: `npm run server` → `http://localhost:3001`
